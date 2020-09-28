@@ -54,11 +54,12 @@ def step_4(message: Message):
     global date
     global result
     date = str(message.text)
-    if date == '-' or ' ':
+    if date == '-':
         date = ''
     try:
         result = convert(Decimal(amount), from_, to_, date, requests)
-    except:
+    except Exception as e:
+        print(e)
         result = "Ой! Что-то не получилось, возможно вы неправильно ввели ISO-код валюты"
     bot.send_message(message.chat.id, result)
 
